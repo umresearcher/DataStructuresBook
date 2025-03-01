@@ -7,9 +7,9 @@
   <bibinfo>
   
     <author>
-      <personname>You</personname>
+      <personname>Murali Mani</personname>
       <department>Your department</department>
-      <institution>Your institution</institution>
+      <institution>University of Michigan Flint</institution>
     </author>
     <date>
       <today />
@@ -32,8 +32,8 @@
     <titlepage-items/>
   </titlepage>
 
-  <colophon xml:id="front-colophon">
+  <!-- <colophon xml:id="front-colophon">
     <colophon-items/>
-  </colophon>
+  </colophon> -->
 </frontmatter>
 
