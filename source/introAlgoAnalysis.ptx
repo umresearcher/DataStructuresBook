@@ -4,21 +4,22 @@
   <title>Introduction to Algorithm Analysis</title>
 
   <introduction>
-    <p>Why analyze algorithms? (develop arguments from Cormen etc)</p> 
+    <p><alert>Why analyze algorithms? (develop arguments from Cormen)</alert></p> 
     <p>A learning goal of a 
-    computer science education is to be able to compare multiple algorithms (let us call
-    them Algorithm <m>A</m> and Algorithm <m>B</m>) that solve a specific problem and 
-    choose the "optimal" one. Note that we started by saying: Algorithm <m>A</m> and 
-    Algorithm <m>B</m> are both algorithms for the problem. This means that both 
-    Algorithm <m>A</m> and Algorithm <m>B</m> will give you the correct solution for any 
-    instance of the problem. What makes an algorithm "optimal" could depend on several 
-    factors: for instance, it could be time for implementing, testing and maintaining the 
-    algorithm, it could be the time it takes for the algorithm to solve the problem, it 
-    could be the extra memory that the algorithm uses while solving the problem. 
+    computer science education is to be able to compare multiple algorithms that solve a 
+    particular problem. Suppose Algorithm <m>A</m> and Algorithm <m>B</m> solve a 
+    specific problem. When we say Algorithm <m>A</m> and Algorithm <m>B</m> 
+    solve a problem, it means that both Algorithm <m>A</m> and Algorithm <m>B</m> will give 
+    the correct solution for any instance of the problem. The reason we compare two 
+    algorithms for a particular problem is to choose the "optimal" algorithm for that problem. 
+    What makes an algorithm "optimal" could be based on several metrics: for instance, it 
+    could be time for implementing, testing and/or maintaining the algorithm, it could 
+    be the time it takes for the algorithm to solve the problem, it could be the additional 
+    memory that the algorithm uses while solving the problem. And so on.
     </p>
 
     <p>While you can compare two algorithms across multitude of factors, the time taken for 
-    an algorithm to solve a problem is a good starting point, and is often the most useful 
+    an algorithm to solve a problem is a good starting point, and is often very useful 
     (validate claim??). Now when we compare the time it takes for two algorithms to solve 
     a problem, we need to also consider the underlying computer system on which the algorithm
     will be run. For instance, a parallel computer can potentially run the statements in 
@@ -44,61 +45,17 @@
     for analysis, we will make simplifying assumptions that are commonplace (check claim).  
     </p>
 
-    <p>We have laid out that we need to analyze the running time of an algorithm on a single
-    processor computer. But how do we go about it? Let us look at the tools that we have 
-    developed over the years to enable such analysis of algorithms.</p>
-
-    <p>So, how to express the running time of an algorithm for a particular input instance
-    of a problem? We typically represent this as a function of the input size. And for the 
-    input size, we use the number of bits used to represent the input. For instance, 
-    if the input is an array of <m>n</m> numbers and each number is represented using 8 bits, 
-    the input size is <m>8 \times n</m>, and we represent the running time of an algorithm in 
-    terms of this input size. Note that we actually represent the running time in terms of 
-    <m>n</m> in this case.
-    </p>
-
-    <p>Tool 1: Bounds. We said we want to represent the running time, but how do we represent the running 
-    time? Is it milliseconds? then a faster processor might run a less "optimal" algorithm 
-    quicker than a slower processor running a more "optimal" algorithm. Our focus is on 
-    comparing the algorithms, and not comparing the individual processor quirks. For this, 
-    we use bounds -- <m>O</m>, <m>\Omega</m>, <m>\Theta</m>, <m>o</m>, and <m>\omega</m>. These 
-    bounds us provide us the ability to ignore the individual processor quirks and compare
-    the "optimality" of algorithms.
-    </p>
-
-    <p>Tool 2: Asymptotic Analysis.</p>
-    <p>How long does it take for an algorithm to complete when the input size is a small
-    number, say 5 (for instance array of 5 numbers). Unless your algorithm has an infinite loop, 
-    the algorithm will take some small number of steps. Using our bounds, all "reasonable" 
-    algorithms take <m>\Theta(1)</m> time for small input sizes. To perform meaningful analysis
-    of algorithms, we perform asymptotic analysis - which basically means, we compare how two 
-    algorithms perform when the input size is large.</p> 
-
-    <p>Consider the problem of searching if a given key <m>k</m> is present in an array 
-    <m>A[1\ldots n]</m>. Consider a simple algorithm where we start from index 1 and loop 
-    through all indexes, each time checking if the element at that index is the key <m>k</m>
-    that we are searching for. If we find the key <m>k</m>, we can immediately return "success". 
-    If we loop through the whole loop and do not find the key <m>k</m>, we return "failure".
-    </p>
-
-    <p>What do we note in the above algorithm? First off, we analyze when the input size 
-    <m>n</m> is large. How much time does it take? We might get lucky and find that 
-    <m>A[1] = k</m>, in which case we return in <m>Theta(1)</m> time. We might get unlucky, 
-    and never find <m>k</m>, or find that the last element is <m>k</m> (<m>A[n] = k</m>). How
-    do we characterize these different running times depending on "our luck"?
-    </p>
-
-    <p>For this, we perform the best case, and worst case analysis. The best case for an 
-    algorithm considers the input for which the algorithm will run the fastest. The running 
-    time in the best case is called the best case running time for that algorithm. Similarly,
-    the worst case for an algorithm considers the input for which the algorithm will run the 
-    slowest. The running time in the worst case is called the worst case running time for that 
-    algorithm.
+    <p>We hope that you are convinced you need to learn how to analyze algorithms. There are
+    tools that we use in computer science to analyze algorithms. Before we study these
+    tools, let us examine an algorithm for a simple problem: find the smallest value 
+    given an array of numbers.
     </p>
 
   </introduction>
 
   <!-- include sections -->
   <xi:include href="sec-findMin.ptx" />
+  <xi:include href="sec-analysisTools.ptx" />
+
 
 </chapter>
