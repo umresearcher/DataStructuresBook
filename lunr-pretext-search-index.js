@@ -7,7 +7,16 @@ var ptx_lunr_docs = [
   "type": "Section",
   "number": "1.1",
   "title": "Finding Minimum Element in an Array",
-  "body": " Finding Minimum Element in an Array  Consider an array of numbers.  "
+  "body": " Finding Minimum Element in an Array  Consider an array of numbers, . We need to find the smallest among .  The above is probably one of the first programs you might have written. The algorithm works typically as: We will go through the numbers in , one by one, and we will use a variable for keeping track of the smallest among the values we have examined so far in . The details are as:    let currMin be the variable we use for keeping track of the smallest so far. We first initialize it to A[1].  Now we loop looking at elements A[2] to A[n]. For this we will use a counter variable, say i. i starts from 2 and goes to n.  Consider an iteration where i has the value, say k. In this iteration, we will compare A[k] with value in currMin, and we will update currMin if A[k] is < currMin. We do this for all values of i from 2 to n.    At the end of the loop, we have examined all values A[1..n], and currMin has the smallest among these values. So we return currMin as the result of the function.    The above is an algorithm for the given problem. Let us now drag the blocks given (there are some incorrect blocks given as well, which you should not use) for the above algorithm.  Parsons Problem, Find Min findMin  We are going to write an algorithm for the findMin problem. Consider an array of numbers, . We need to find the smallest among .   initialize currMin = A[1].    Loop over i values from 0 to n.    Loop over i values from 2 to n.    Loop over i values from 1 to n-1.     return A[1].   For each value of i in the iteration, set currMin = A[i] if A[i] < currMin  return currMin  return A[n]   Dorothy will not be much help with this proof.    FindMin(A): Input: A[1...n] of n numbers Output: A number, A[i] such that A[i] <= A[j], for all 1 <= j <= n 1. currMin = A[1] 2. for i = 2 to n 3. if A[i] < currMin 4. currMin = A[i] 5. return currMin   "
+},
+{
+  "id": "findMin-pseudoCodeParsons",
+  "level": "2",
+  "url": "sec-findMin.html#findMin-pseudoCodeParsons",
+  "type": "Checkpoint",
+  "number": "1.1.1",
+  "title": "Parsons Problem, Find Min.",
+  "body": "Parsons Problem, Find Min findMin  We are going to write an algorithm for the findMin problem. Consider an array of numbers, . We need to find the smallest among .   initialize currMin = A[1].    Loop over i values from 0 to n.    Loop over i values from 2 to n.    Loop over i values from 1 to n-1.     return A[1].   For each value of i in the iteration, set currMin = A[i] if A[i] < currMin  return currMin  return A[n]   Dorothy will not be much help with this proof.  "
 },
 {
   "id": "sec-analysisTools",
