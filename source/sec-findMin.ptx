@@ -3,6 +3,95 @@
 <section xml:id="sec-findMin" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Finding Minimum Element in an Array</title>
 
-  <p> Consider an array of <m>n</m> numbers. </p>
+  <p> Consider an array of <m>n</m> numbers, <m>A[1\ldots n]</m>. We need to find the
+  smallest among <m>A[1\ldots n]</m>.</p>
+  
+  <p>The above is probably one of the first programs you might have written. The algorithm
+  works typically as: We will go through the numbers in <m>A[1\ldots n]</m>, one by one, and 
+  we will use a variable for keeping track of the smallest among the values we have 
+  examined so far in <m>A[1\ldots n]</m>. The details are as:</p>
+
+  <p>
+    <ol>
+      <li><p>let currMin be the variable we use for keeping track of the smallest so far. We 
+      first initialize it to A[1].</p></li>
+      <li><p>Now we loop looking at elements A[2] to A[n]. For this we will use a counter 
+      variable, say i. i starts from 2 and goes to n.
+        <ol>
+          <li><p>Consider an iteration where i has the value, say k. In this iteration, we will
+          compare A[k] with value in currMin, and we will update currMin if A[k] is &lt; currMin.
+          We do this for all values of i from 2 to n.  
+            </p></li>
+        </ol>
+      </p></li>
+      <li><p>At the end of the loop, we have examined all values A[1..n], and currMin has 
+      the smallest among these values. So we return currMin as the result of the function.
+      </p></li>
+    </ol>
+  </p>
+
+<p>The above is an algorithm for the given problem. Let us now drag the blocks given (there are
+some incorrect blocks given as well, which you should not use) for the above algorithm.
+</p>
+
+<exercise label="findMin-pseudoCodeParsons" adaptive="yes">
+  <title>Parsons Problem, Find Min</title>
+  <idx>findMin</idx>
+  <statement>
+  <p>We are going to write an algorithm for the findMin problem. 
+  Consider an array of <m>n</m> numbers, <m>A[1\ldots n]</m>. We need to find the
+  smallest among <m>A[1\ldots n]</m>.</p>
+  </statement>
+  <blocks>
+  <block order="2" correct="yes"><p>initialize currMin = A[1].</p></block>
+  <block order="3">
+  <choice>
+  <p>
+    Loop over i values from 0 to n.
+  </p>
+  </choice>
+  <choice correct="yes">
+  <p>
+    Loop over i values from 2 to n.
+  </p>
+  </choice>
+  <choice>
+  <p>
+    Loop over i values from 1 to n-1.
+  </p>
+  </choice>
+  </block>
+  <block order="1" correct="no">
+  <p>
+    return A[1].
+  </p>
+  </block>
+  <block order="4" correct="yes"><p>For each value of i in the iteration, set currMin = A[i] 
+  if A[i] &lt; currMin</p></block>
+  <block order="5" correct="yes"><p>return currMin</p></block>
+  <block order="6" correct="no"><p>return A[n]</p></block>
+  </blocks>
+  <hint>
+    <p>
+      Dorothy will not be much help with this proof.
+    </p>
+  </hint>
+</exercise>
+
+<p>
+<program>
+  FindMin(A):
+    Input: A[1...n] of n numbers
+    Output: A number, A[i] such that A[i] &lt;= A[j], for all 1 &lt;= j &lt;= n
+
+    1. currMin = A[1]
+    2. for i = 2 to n
+    3.   if A[i] &lt; currMin
+    4.     currMin = A[i]
+    5. return currMin
+</program>
+</p>
+
+
 
 </section>
