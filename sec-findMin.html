@@ -148,21 +148,17 @@ eBookConfig.enable_chatcodes =  false;
 </h2>
 <div class="para" id="sec-findMin-2">Consider an array of <span class="process-math">\(n\)</span> numbers, <span class="process-math">\(A[1\ldots n]\text{.}\)</span> We need to find the smallest among <span class="process-math">\(A[1\ldots n]\text{.}\)</span>
 </div>
-<div class="para" id="sec-findMin-3">The above is probably one of the first programs you might have written. The algorithm works typically as: We will go through the numbers in <span class="process-math">\(A[1\ldots n]\text{,}\)</span> one by one, and we will use a variable for keeping track of the smallest among the values we have examined so far in <span class="process-math">\(A[1\ldots n]\text{.}\)</span> The details are as:</div>
-<div class="para logical" id="sec-findMin-4"><ol class="decimal" id="sec-findMin-4-1">
-<li id="sec-findMin-4-1-1"><div class="para" id="sec-findMin-4-1-1-1">let currMin be the variable we use for keeping track of the smallest so far. We first initialize it to A[1].</div></li>
-<li id="sec-findMin-4-1-2"><div class="para logical" id="sec-findMin-4-1-2-1">
-<div class="para">Now we loop looking at elements A[2] to A[n]. For this we will use a counter variable, say i. i starts from 2 and goes to n.</div>
-<ol class="lower-alpha lower-alpha-level-1" id="sec-findMin-4-1-2-1-1"><li id="sec-findMin-4-1-2-1-1-1"><div class="para" id="sec-findMin-4-1-2-1-1-1-1">Consider an iteration where i has the value, say k. In this iteration, we will compare A[k] with value in currMin, and we will update currMin if A[k] is &lt; currMin. We do this for all values of i from 2 to n.</div></li></ol>
-</div></li>
-<li id="sec-findMin-4-1-3"><div class="para" id="sec-findMin-4-1-3-1">At the end of the loop, we have examined all values A[1..n], and currMin has the smallest among these values. So we return currMin as the result of the function.</div></li>
-</ol></div>
-<div class="para" id="sec-findMin-5">The above is an algorithm for the given problem. Let us now drag the blocks given (there are some incorrect blocks given as well, which you should not use) for the above algorithm.</div>
+<div class="para" id="sec-findMin-3">The above is probably one of the first programs you might have written when learning collections (or) arrays. The computational way of thinking about this problem is: how to we find the smallest among <span class="process-math">\(n\)</span> numbers when we see the numbers one at a time. We typically do this by examining each number one at a time and keeping track of the smallest among the numbers seen so far (using a "scratch" variable). Let us now write pseudo-code for this function.</div>
 <details id="findMin-pseudoCodeParsons" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h3 class="heading">
 <span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">1.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">Parsons Problem, Find Min.</span>
 </h3></summary><article class="exercise exercise-like knowl__content"><div class="ptx-runestone-container"><div class="runestone parsons_section" style="max-width: none;"><div data-component="parsons" class="parsons" id="rs-findMin-pseudoCodeParsons">
-<div class="parsons_question parsons-text"><div class="para" id="findMin-pseudoCodeParsons-3-1">We are going to write an algorithm for the findMin problem. Consider an array of <span class="process-math">\(n\)</span> numbers, <span class="process-math">\(A[1\ldots n]\text{.}\)</span> We need to find the smallest among <span class="process-math">\(A[1\ldots n]\text{.}\)</span>
-</div></div>
+<div class="parsons_question parsons-text">
+<div class="para" id="findMin-pseudoCodeParsons-3-1">We are going to write an algorithm for the findMin problem. Consider an array of <span class="process-math">\(n\)</span> numbers, <span class="process-math">\(A[1\ldots n]\text{.}\)</span> We need to find the smallest among <span class="process-math">\(A[1\ldots n]\text{.}\)</span>
+</div> <div class="para" id="findMin-pseudoCodeParsons-3-2">For this, we will write a function, say findMin defined as follows: <div class="code-box"><pre class="program"><code class="language-none">findMin(A):
+  Input: A[1...n] of n numbers
+  Returns: A number, A[i] such that A[i] &lt;= A[j], for all 1 &lt;= j &lt;= n
+</code></pre></div> Drag the blocks to form the body of your function.</div>
+</div>
 <pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-adaptive="true" data-noindent="true"><div class="para" id="findMin-pseudoCodeParsons-4-1-1">initialize currMin = A[1].</div>
 ---
 <div class="para" id="findMin-pseudoCodeParsons-4-2-2-1">Loop over i values from 2 to n.</div>
@@ -179,7 +175,7 @@ eBookConfig.enable_chatcodes =  false;
 ---
 <div class="para" id="findMin-pseudoCodeParsons-4-6-1">return A[n]</div> #distractor</pre>
 </div></div></div>
-<div class="solutions"><details id="findMin-pseudoCodeParsons-5" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para" id="findMin-pseudoCodeParsons-5-1">Dorothy will not be much help with this proof.</div></div></details></div></article></details><div class="para" id="sec-findMin-7"><div class="code-box"><pre class="program"><code class="language-none">FindMin(A):
+<div class="solutions"><details id="findMin-pseudoCodeParsons-5" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para" id="findMin-pseudoCodeParsons-5-1">Dorothy will not be much help with this proof.</div></div></details></div></article></details><div class="para" id="sec-findMin-5"><div class="code-box"><pre class="program"><code class="language-none">findMin(A):
   Input: A[1...n] of n numbers
   Output: A number, A[i] such that A[i] &lt;= A[j], for all 1 &lt;= j &lt;= n
 
