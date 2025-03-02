@@ -5,8 +5,16 @@
 
   <p> Consider an array of <m>n</m> numbers, <m>A[1\ldots n]</m>. We need to find the
   smallest among <m>A[1\ldots n]</m>.</p>
-  
-  <p>The above is probably one of the first programs you might have written. The algorithm
+
+  <p>The above is probably one of the first programs you might have written when learning 
+  collections (or) arrays. The computational way of thinking about 
+  this problem is: how to we find the smallest among <m>n</m> numbers when we see the 
+  numbers one at a time. We typically do this by examining each number one at a time
+  and keeping track of the smallest among the numbers seen so far (using a "scratch" 
+  variable). Let us now write pseudo-code for this function.
+  </p> 
+
+  <!--<p>The above is probably one of the first programs you might have written. The algorithm
   works typically as: We will go through the numbers in <m>A[1\ldots n]</m>, one by one, and 
   we will use a variable for keeping track of the smallest among the values we have 
   examined so far in <m>A[1\ldots n]</m>. The details are as:</p>
@@ -32,7 +40,7 @@
 
 <p>The above is an algorithm for the given problem. Let us now drag the blocks given (there are
 some incorrect blocks given as well, which you should not use) for the above algorithm.
-</p>
+</p> -->
 
 <exercise label="findMin-pseudoCodeParsons" adaptive="yes">
   <title>Parsons Problem, Find Min</title>
@@ -41,6 +49,14 @@ some incorrect blocks given as well, which you should not use) for the above alg
   <p>We are going to write an algorithm for the findMin problem. 
   Consider an array of <m>n</m> numbers, <m>A[1\ldots n]</m>. We need to find the
   smallest among <m>A[1\ldots n]</m>.</p>
+  <p>For this, we will write a function, say findMin defined as follows:
+  <program>
+    findMin(A):
+      Input: A[1...n] of n numbers
+      Returns: A number, A[i] such that A[i] &lt;= A[j], for all 1 &lt;= j &lt;= n
+  </program>
+  Drag the blocks to form the body of your function.
+  </p>
   </statement>
   <blocks>
   <block order="2" correct="yes"><p>initialize currMin = A[1].</p></block>
@@ -80,7 +96,7 @@ some incorrect blocks given as well, which you should not use) for the above alg
 
 <p>
 <program>
-  FindMin(A):
+  findMin(A):
     Input: A[1...n] of n numbers
     Output: A number, A[i] such that A[i] &lt;= A[j], for all 1 &lt;= j &lt;= n
 
