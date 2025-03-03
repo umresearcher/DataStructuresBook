@@ -55,7 +55,7 @@
 
   <!-- include sections -->
   <xi:include href="sec-findMin.ptx" />
-  <xi:include href="sec-analysisTools.ptx" />
+  <!-- <xi:include href="sec-analysisTools.ptx" /> -->
 
 
 </chapter>
