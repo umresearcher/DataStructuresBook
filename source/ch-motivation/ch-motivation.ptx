@@ -1,0 +1,968 @@
+<chapter xml:id="chapter-three">
+  <title>Introduction</title>
+
+  <introduction>
+  <p>In this chapter, we will examine a few key constructs that exhibit false transfer across programming 
+    languages. These are constructs that are syntactically similar across 
+    languages, but they behave differently. It is important that a computing student, who must be able
+    to transfer across languages, understand these behaviors across the key languages. We will focus on 
+    three main programming languages of today: C++, Java, and Python. 
+  </p>
+
+  <p>As an illustration of what we will be examining, let us first start with some exercises. As you
+    do these exercises, reflect on how confident you are with doing these exercises. If you are uncertain
+    about these exercises, read the following chapters to understand the behaviors across languages.    
+  </p>
+  </introduction>
+
+  <section xml:id="sec-motiv-assignment">
+    <title>Assignment of objects</title>
+      <p>Different programming languages behave differently while assigning objects to variables, as 
+        you will see below.
+      </p>
+  <exercises>
+    <introduction>
+      <p>Consider the following "(almost) identical" programs, one written in C++, one in Java, and one in
+        Python. These programs have two variables to which objects are assigned.
+      </p>
+
+    </introduction>
+
+      <sidebyside widths="30% 65%" valign="middle">
+    <exercise>
+      <statement>
+        <p>What is printed by the C++ program (lines 15, 16)</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 101
+s2 ID = 101
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+s2 ID = 101
+s2 ID = 202
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 202
+s2 ID = 101
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 202
+s2 ID = 202
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>
+            Separate memory is allocated for the objects referred to by variables s1 and s2, each with its own 
+            memory locations for the sID member variable. Therefore, updating s2.sID does not impact s1's sID.
+          </p>
+        </answer>
+    </exercise>
+        <p>
+          <image source="./fig-motivation/MotivationCPP-1.PNG" />
+          <url href="https://onecompiler.com/cpp/43q6wqkjv">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+      <sidebyside widths="30% 65%" valign="middle">
+      <exercise>
+      <statement>
+        <p>What is printed by the Java program (lines 14, 15)</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 101
+s2 ID = 101
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 101
+s2 ID = 202
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 202
+s2 ID = 101
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+s1 ID = 202
+s2 ID = 202
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>
+            Just like C++, separate memory is allocated for variables s1 and s2. However, unlike C++,
+            the variables s1 and s2 store references to the Student object, and in this case they store 
+            references to the same Student object. Therefore updating s2.sID updates the same object that s1
+            references.
+          </p>
+        </answer>
+
+    </exercise>
+            <p>
+          <image source="./fig-motivation/MotivationJava-1.PNG" />
+          <url href="https://onecompiler.com/java/43q9g9ksf">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+      <sidebyside widths="45% 50%" valign="middle">
+    <exercise halign="left">
+      <statement>
+        <p>What is printed by the Python program (lines 10, 11)</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 101
+s2 ID = 101
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 101
+s2 ID = 202
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 202
+s2 ID = 101
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+s1 ID = 202
+s2 ID = 202
+</output></console>
+            </statement>
+          </choice>
+
+        </choices>
+        <answer>
+          <p>
+            Just like in Java, variables s1 and s2 store references to the same same Student object.
+            Therefore updating s2.sID updates the same object that s1 references.
+          </p>
+        </answer>
+    </exercise>
+        <p>
+          <image source="./fig-motivation/MotivationPython-1.PNG" />
+          <url href="https://onecompiler.com/python/43q9gnps2">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+
+  </exercises>
+  </section>
+
+  <section xml:id="sec-motiv-parameters">
+    <title>Passing objects as parameters</title>
+      <p>Different programming languages behave differently while passing objects as parameters to 
+        functions, as you will see below.
+      </p>
+    
+  <exercises>
+    <introduction>
+      <p>Consider the following "(almost) identical" programs, one written in C++, one in Java, and one in
+        Python. These programs pass an object as parameter to a function. When the object is modified inside 
+        the function, does it affect the original object when you return from the function. 
+      </p>
+
+    </introduction>
+
+      <sidebyside widths="30% 65%" valign="middle">
+    <exercise>
+      <statement>
+        <p>What is printed by the C++ program (line 19)</p>
+      </statement>
+      <choices>
+        <choice correct="yes">
+          <statement>
+<console><output>
+s1 ID = 101
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+s2 ID = 202
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>
+            Separate memory is allocated for the objects referred to by variable s1 in the main function, 
+            and by the variable s in the modifyStudent function, each with its own memory locations for
+            the sID member variable. Therefore, updating s.sID in modifyStudent function does not impact
+            s1's sID.
+          </p>
+        </answer>
+    </exercise>
+        <p>
+          <image source="./fig-motivation/MotivationCPP-2.PNG" />
+          <url href="https://onecompiler.com/cpp/43qg29nyj">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+      <sidebyside widths="30% 65%" valign="middle">
+      <exercise>
+      <statement>
+        <p>What is printed by the Java program (line 18)</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 101
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+s2 ID = 202
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>While separate memory is allocated for the variable s1 in the main method and for the 
+            variable s in the modifyStudent method, these store references to the same Student object.
+            Therefore updating s.sID in the modifyStudent method updates the same object referenced by
+            variable s1 in the main method.
+          </p>
+        </answer>
+
+    </exercise>
+            <p>
+          <image source="./fig-motivation/MotivationJava-2.PNG" />
+          <url href="https://onecompiler.com/java/43qfzhf6z">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+      <sidebyside widths="35% 60%" valign="middle">
+    <exercise>
+      <statement>
+        <p>What is printed by the Python program (line 12)</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+s1 ID = 101
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+s2 ID = 202
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>Python behaves just like Java. Both the variable s1 in the main and the variable s in 
+            the modifyStudent method refere to the same Student object. Therefore updating s.sID in the 
+            modifyStudent method updates the same object referenced by variable s1 in the main.
+          </p>
+        </answer>
+    </exercise>
+        <p>
+          <image source="./fig-motivation/MotivationPython-2.PNG" />
+          <url href="https://onecompiler.com/python/43qg33n9y">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+
+  </exercises>
+  </section>
+
+  <section xml:id="sec-motiv-variableAddress">
+    <title>Addresses of variables</title>
+      <p>Python exhibits a distinct behavior when variables are assigned to primitive values like 
+        integers, and then reassigned.
+      </p>
+    
+  <exercises>
+    <introduction>
+      <p>Consider the following "(almost) identical" programs, one written in C++, and one in Python. 
+        First, the same integer value is assigned to two variables. One of the variables is then
+        reassigned to a new value. Observe how the addresses or identies associated with the variables 
+        behave in each language. Java will behave like C++; however, we do not illustrate Java as Java
+        does not provide a way of accessing memory addresses of primitive types (like integers).
+      </p>
+
+    </introduction>
+
+      <sidebyside widths="30% 65%" valign="middle">
+    <exercise>
+      <statement>
+        <p>What is printed by the C++ program (lines 10, 16)</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+same
+same
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+same
+different
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+different
+same
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+different
+different
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>
+            In C++, separate memory is allocated for v1 and v2 when they are declared. Each variable holds 
+            its own copy of the value. When we access or update a variable, we are interacting directly with 
+            the value stored in its own memory location. Once declared, the address of each variable remains
+            the same, even after reassignment.
+          </p>
+        </answer>
+    </exercise>
+        <p>
+          <image source="./fig-motivation/MotivationCPP-3.PNG" />
+          <url href="https://onecompiler.com/cpp/43sx4zctr">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+
+      <sidebyside widths="35% 60%" valign="middle">
+    <exercise>
+      <statement>
+        <p>What is printed by the Python program (lines 6, 12)</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+same
+same
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+same
+different
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+different
+same
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+different
+different
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>This behavior could differ based on python implementation, though what we see is common. 
+            When we start, both v1 and v2 are assigned the same integer (1000), and they both refer to 
+            the same address where the integer 1000 is stored. When v2 is reassigned to 2000, v2 now
+            references a different address where the integer 2000 is stored, while v1 continues to refer
+            to the same location as before. Edit the program and play around and see what happens when
+            v1 is also reassigned, when an integer is passed as a function parameter, etc. These behaviors 
+            exhibited by most Python implementations are different from what is typically seen in C++ and Java.
+          </p>
+        </answer>
+    </exercise>
+        <p>
+          <image source="./fig-motivation/MotivationPython-3.PNG" />
+          <url href="https://onecompiler.com/python/43t2e6kp5">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+
+  </exercises>
+  </section>
+
+
+  <section xml:id="sec-motiv-array">
+    <title>Accessing Array Indexes</title>
+      <p>In programming, we often deal with collections of objects which are structured using different 
+        data structures such as arrays, linked lists, and so on. Furthermore, you are often expected to 
+        write "efficient" code. For instance, you might be expected to write code that runs fast.
+        You need to understand how memory is allocated for different data structures, and the performance
+        of different operations on data structures.
+      </p>
+      <p>Let us examine arrays, and see how memory access of different array indexes perform similarly
+        across different programming languages.
+      </p>
+
+  <exercises>
+    <introduction>
+      <p>Consider the following "(almost) identical" programs, one written in C++, one in Java, and one in
+        Python. All these programs allocate an array of size 10,000. How will the time to access later/higher 
+        indexes in the array compare to the time to access earlier/lower indexes in the array?
+      </p>
+      <p>
+        Our program does the following. After initializing an array of size 10,000, we access early indexes 
+        (for our purpose, we consider the first 10% of indexes, i.e., indexes between 0 and 1000, as early 
+        indexes) a total of 100,000 times. Each access, we set the early index element to a random 
+        integer. We then access late indexes (for our purpose, we consider the 10% of indexes between 8000 and
+        9000 as late indexes) a total of 100,000 times, each time setting the late index element to a random 
+        integer. We then report two times: the total time for accessing the 100,000 early indexes (which we 
+        denote as <em>TE</em>); and the total time for accessing the 100,000 late indexes (which we denote as
+        <em>TH</em>).
+      </p>
+
+    </introduction>
+
+      <sidebyside widths="30% 65%" valign="middle">
+    <exercise>
+      <statement>
+        <p>What is the relationship between the times (<em>TE</em> and <em>TH</em>) reported by 
+          lines 30, 31?</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+TE ≪ TH (significantly smaller)
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+TE ≫ TH (significantly greater)
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+TE ≈ TH (approximately the same)
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>
+            The way memory is allocated for an array, and the way a particular array index element is 
+            accessed is such that accessing any index takes the same amount of time.
+          </p>
+        </answer>
+    </exercise>
+        <p>
+          <image source="./fig-motivation/MotivationCPP-4.PNG" />
+          <url href="https://onecompiler.com/cpp/43qgqmj9d">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+      <sidebyside widths="30% 65%" valign="middle">
+      <exercise>
+      <statement>
+        <p>What is the relationship between the times (<em>TE</em> and <em>TH</em>) reported by 
+          lines 28, 29?</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+TE ≪ TH (significantly smaller)
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+TE ≫ TH (significantly greater)
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+TE ≈ TH (approximately the same)
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>
+            The way memory is allocated for an array, and the way a particular array index element is 
+            accessed in Java is similar to that in C++. In other words, accessing any index takes the 
+            same amount of time.
+          </p>
+        </answer>
+    </exercise>
+            <p>
+          <image source="./fig-motivation/MotivationJava-4.PNG" />
+          <url href="https://onecompiler.com/java/43qgqevv5">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+      <sidebyside widths="35% 60%" valign="middle">
+    <exercise>
+      <statement>
+        <p>What is the relationship between the times (<em>TE</em> and <em>TH</em>) reported by 
+          lines 22, 23?</p>
+      </statement>
+      <choices>
+        <choice correct="no">
+          <statement>
+<console><output>
+TE ≪ TH (significantly smaller)
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="no">
+          <statement>
+<console><output>
+TE ≫ TH (significantly greater)
+</output></console>
+            </statement>
+          </choice>
+        <choice correct="yes">
+          <statement>
+<console><output>
+TE ≈ TH (approximately the same)
+</output></console>
+            </statement>
+          </choice>
+        </choices>
+        <answer>
+          <p>
+            The way memory is allocated for an array, and the way a particular array index element is 
+            accessed in Python is similar to that in C++ and Java. In other words, accessing any index 
+            takes the same amount of time.
+          </p>
+        </answer>
+    </exercise>
+        <p>
+          <image source="./fig-motivation/MotivationPython-4.PNG" />
+          <url href="https://onecompiler.com/python/43qgpzftp">Run/Edit</url>
+        </p>
+      </sidebyside>
+
+
+  </exercises>
+  </section>
+
+
+  <!-- <p>In this chapter, we will motivate why every computing students needs to 
+          learn about memory allocation and access.</p> -->
+
+  <!-- <subsection xml:id="why-assignment4">
+      <p>Consider the following two similar programs, one written in C++, one in Java, and one in Python.
+        However, see that the programs exhibit different behaviors. A computing student needs to understand
+        the reasons behind this difference in behavior.</p>
+
+    <sidebyside widths="30% 30% 30%" valign="middle">
+            <figure>
+            <image source="./fig-motivation/MotivationCPP-1.PNG"/>
+            <url href="https://onecompiler.com/cpp/43q6wqkjv">Run/Edit</url>
+        </figure>
+        <figure>
+            <image source="./fig-motivation/MotivationJava-1.PNG"/>
+        </figure>
+        <figure>
+            <image source="./fig-motivation/MotivationPython-1.PNG"/>
+        </figure>
+    </sidebyside>
+
+<exercise>
+  <title>Understanding the Slope of a Line</title>
+  <question>
+    <statement>
+      <p>What is the slope of the line that passes through the points (2, 3) and (4, 7)?</p>
+    </statement>
+    <multiple-choice>
+      <choice correct="false">1</choice>
+      <choice correct="false">2</choice>
+      <choice correct="true">2</choice>
+      <choice correct="false">3</choice>
+    </multiple-choice>
+  </question>
+  <solution>
+    <p>The slope is calculated as (7 - 3) / (4 - 2) = 4 / 2 = 2.</p>
+  </solution>
+</exercise>
+
+
+<exercises xml:id="ex-motivation-assignment">
+  <exercisegroup>
+
+    <introduction>
+      <p>
+        Here's where you put the common instructions.
+      </p>
+    </introduction>
+<exercise>
+  <title>Understanding the Slope of a Line</title>
+  <question>
+    <statement>
+      <p>What is the slope of the line that passes through the points (2, 3) and (4, 7)?</p>
+    </statement>
+    <choices>
+      <choice correct="false">1</choice>
+      <choice correct="false">2</choice>
+      <choice correct="true">2</choice>
+      <choice correct="false">3</choice>
+    </choices>
+  </question>
+  <solution>
+    <p>The slope is calculated as (7 - 3) / (4 - 2) = 4 / 2 = 2.</p>
+  </solution>
+</exercise>
+<exercise>
+  <title>Understanding the Slope of a Line</title>
+  <question>
+    <statement>
+      <p>What is the slope of the line that passes through the points (2, 3) and (4, 7)?</p>
+    </statement>
+    <multiple-choice>
+      <choice correct="false">1</choice>
+      <choice correct="false">2</choice>
+      <choice correct="true">2</choice>
+      <choice correct="false">3</choice>
+    </multiple-choice>
+  </question>
+  <solution>
+    <p>The slope is calculated as (7 - 3) / (4 - 2) = 4 / 2 = 2.</p>
+  </solution>
+</exercise> -->
+
+  <!--    <choices>
+      <statement><p>C++ exercise</p></statement>
+      <choice><p>101, 101</p></choice>
+      <choice correct="yes"><p>101, 202</p></choice>
+      <choice><p>202, 101</p></choice>
+      <choice><p>202, 202</p></choice>
+    </choices> -->
+
+  <!--  </exercisegroup>
+
+  <exercisegroup>
+  <exercise>
+  <statement><p>C++ Exercise - 8 pm</p></statement>
+  <choices>
+    <choice correct="no"><statement>Option A</statement></choice>
+    <choice correct="yes"><statement><p>Option B</p></statement></choice>
+  </choices>
+</exercise>
+
+  <exercise>
+  <statement><p>C++ Exercise - 8 pm</p></statement>
+  <choices>
+    <choice correct="no"><statement>Option A</statement></choice>
+    <choice correct="yes"><statement><p>Option B</p></statement></choice>
+  </choices>
+</exercise> 
+
+
+ </exercisegroup> -->
+  <!--  Exercise =
+    element exercise {
+        MetaDataTitleOptional,
+        attribute number {text}?,
+        (
+        ExerciseBody |
+        (StatementExercise, Hint*, Answer*, Solution*) |
+        (IntroductionStatement?, Task+, ConclusionStatement?) |
+        (IntroductionText?, WebWork, ConclusionText?)
+        )
+    }
+
+  MultipleChoice =
+    MetaDataTitleOptional,
+    attribute number {text}?,
+    StatementExercise,
+    element choices {
+        attribute randomize {"yes"|"no"}?,
+        Choice+
+    },
+    Hint*, Answer*, Solution*
+
+    Choice =
+    element choice {
+        attribute correct {"yes"|"no"}?,
+        ((mixed {BlockText?})
+        | (StatementExercise, Feedback?))
+    }
+
+    StatementExercise =
+    element statement { ExerciseBody }
+
+    ExerciseBody =
+    (
+        BlockStatement |
+        ExerciseOrderedList
+    )+
+
+    BlockStatement =
+    BlockText |
+    Figure | Aside |
+    SideBySide | SideBySideGroup | Sage
+
+    BlockText =
+    Paragraph | BlockQuote | Preformatted |
+    Image | Video | Program | Console | Tabular -->
+
+
+  <!-- <choices>
+      <statement><p>C++ exercise</p></statement>
+      <choice>101, 101</choice>
+      <choice correct="yes">101, 202</choice>
+      <choice><p>202, 101</p></choice>
+      <choice><p>202, 202</p></choice>
+    </choices> 
+
+  <exercise>
+    <p>
+      This <tag>exercise</tag> is not inside the <tag>exercisegroup</tag>.
+    </p>
+  </exercise>
+
+</exercises>
+
+
+    </subsection>
+
+
+
+
+    <section xml:id="why-assignment">
+      <p>Consider the following two similar programs, one written in C++, one in Java, and one in Python.
+        However, see that the programs exhibit different behaviors. A computing student needs to understand
+        the reasons behind this difference in behavior.</p>
+
+    <interactive xml:id="onecompiler-embed"
+  iframe="https://onecompiler.com/embed/cpp/43q6wqkjv?hideRun=true&amp;hideResult=true&amp;hideNew=true&amp;hideNewFileOption=true&amp;hideLanguageSelection=true&amp;hideEditorOptions=true"
+               width="95%"
+               aspect="16:9"/> -->
+  <!-- <p><button>https://onecompiler.com/cpp/43q6wqkjv</button></p> 
+      <p><url href="https://onecompiler.com/cpp/43q6wqkjv"/>Click here to run</url></p> -->
+  <!-- <url href="https://onecompiler.com/cpp/43q6wqkjv">Run/Edit</url>
+
+    </section>
+
+            <section xml:id="why-assignment3">
+      <p>Consider the following two similar programs, one written in C++, one in Java, and one in Python.
+        However, see that the programs exhibit different behaviors. A computing student needs to understand
+        the reasons behind this difference in behavior.</p>
+
+    <sidebyside widths="30% 30% 30%" valign="middle">
+            <figure>
+            <image source="./fig-motivation/MotivationCPP-1.PNG"/>
+            <url href="https://onecompiler.com/cpp/43q6wqkjv">Run/Edit</url>
+        </figure>
+        <figure>
+            <image source="./fig-motivation/MotivationJava-1.PNG"/>
+        </figure>
+        <figure>
+            <image source="./fig-motivation/MotivationPython-1.PNG"/>
+        </figure>
+    </sidebyside>
+
+    </section>
+
+
+        <section xml:id="why-assignment2">
+      <p>Consider the following two similar programs, one written in C++, one in Java, and one in Python.
+        However, see that the programs exhibit different behaviors. A computing student needs to understand
+        the reasons behind this difference in behavior.</p>
+
+          <sidebyside widths="40% 40%" valign="middle">
+
+    <p><interactive xml:id="onecompiler-embed2"
+  iframe="https://onecompiler.com/embed/cpp/43q6wqkjv?hideRun=true&amp;hideResult=true&amp;hideNew=true&amp;hideNewFileOption=true&amp;hideLanguageSelection=true&amp;hideEditorOptions=true"
+               width="95%"
+               aspect="16:9"/>
+    </p>
+
+    <p><interactive xml:id="onecompiler-embed3"
+  iframe="https://onecompiler.com/embed/cpp/43q6wqkjv?hideRun=true&amp;hideResult=true&amp;hideNew=true&amp;hideNewFileOption=true&amp;hideLanguageSelection=true&amp;hideEditorOptions=true"
+               width="95%"
+               aspect="16:9"/>
+    </p>
+    </sidebyside>
+
+    </section>
+
+
+    <section xml:id="section-why">
+      <title>Why Learn about Memory Allocation and Access?</title>
+      <p>As you are transitioning from a novice programmer, you need to learning about memory 
+        allocation. This helps you answer questions such as:
+        <ul>
+            <li><p>Suppose <m>x</m> and <m>y</m> are two variables in your program, and we have an 
+                    assignment statement as <m>x = y</m>. If we modify <m>x</m>, will <m>y</m> be 
+                    automatically updated?</p></li>
+            <li><p>On similar lines, suppose <m>x</m> is a variables in your program. Also assume 
+                    your program has a function <m>whatHappens(y)</m>, and in the body of the function
+                    <m>y</m> is modified. Suppose we call the function <m>whatHappens</m> passing
+                    <m>x</m> as the parameter. This is done by the statement: <m>whatHappens(x)</m>.
+                    When <m>y</m> is modified within the function body, is <m>x</m> also updated?</p></li>
+            <li><p>A programmer often needs to write programs that run fast. Learning about memory
+                    allocation and memory access helps you answer questions about program running time
+                    such as:
+                    <ul>
+                        <li><p>Suppose we have two objects <m>x</m> and <m>y</m>, and <m>y</m> is 10 times the 
+                                size of <m>x</m>. Which of the following function calls is faster: 
+                                <m>whatHappens(x)</m>, or <m>whatHappens(y)</m>?</p></li>
+                        <li><p>Suppose <m>x</m> is an array with 300,000 elements. Which of the 
+                                following index accesses is faster: <m>x[0]</m>, or <m>x[100000]</m>?</p></li>
+                    </ul>                     
+                </p></li>
+        </ul>    
+    </p>
+
+
+<p><url href="https://onlinegdb.com/yWAjjopMP" visual="example.com">Demo Site</url></p>
+
+
+          <sidebyside widths="40% 40%" valign="middle">
+    <program language="java" line-numbers="yes">
+      <input>
+class Student {
+    public int sID;
+    public Student(int id) {
+        sID = id;
+    }
+}
+
+public class JavaTest {
+    public static void main(String[] args) {
+        Student s1, s2;
+        s1 = new Student(101);
+        s2 = s1;
+        s2.sID = 202;
+        System.out.println("s1 ID = " + s1.sID);
+        System.out.println("s2 ID = " + s2.sID);
+    }
+    }     
+      </input>
+     </program>
+
+    <program language="cpp" line-numbers="yes">
+      <input>
+#include &lt;iostream&gt;
+
+class Student {
+public:
+    int sID;
+    Student(int id) : sID(id) {}
+};
+
+int main() {
+    Student s1(101);
+    Student s2 = s1;
+    s2.sID = 202;
+    std::cout &lt;&lt; "s1 ID = " &lt;&lt; s1.sID &lt;&lt; std::endl;
+    std::cout &lt;&lt; "s2 ID = " &lt;&lt; s2.sID &lt;&lt; std::endl;
+    return 0;
+}
+      </input>
+    </program>
+  </sidebyside> -->
+
+  <!-- <exercise>
+        <title>Memory Allocation in Java vs. C++</title>
+        <statement>
+          <p>Consider the following Java and C++ code snippets:</p>
+          <sidebyside widths="40% 40%" valign="middle">
+            <program language="java" line-numbers="yes" include="java-code"/>
+            <program language="cpp" line-numbers="yes" include="cpp-code"/>
+          </sidebyside>
+          // another comment <sidebyside widths="40% 40%" valign="middle">
+            <program language="java" line-numbers="yes">
+              <code external="java_code.java"/>
+            </program>
+            <program language="cpp" line-numbers="yes">
+              <code external="cpp_code.cpp"/>
+            </program>
+        </sidebyside> // end comment
+          <p>What will be the value of <m>sID</m> for <m>s1</m> after <m>s2</m> is modified?</p>
+        </statement>
+        // another comment <choices>
+          <choice correct="no">Both will be 202</choice>
+          <choice correct="no">Both will be 101</choice>
+          <choice correct="yes">Java will be 202 and C++ will be 101</choice>
+          <choice correct="no">Java will be 101 and C++ will be 202</choice>
+        </choices>
+        <solution>
+          <p>In Java, <m>s1</m> and <m>s2</m> refer to the same object, so modifying <m>s2</m> 
+            also modifies <m>s1</m>. In C++, <m>s1</m> and <m>s2</m> are separate objects, so 
+            modifying <m>s2</m> does not affect <m>s1</m>.</p>
+        </solution> // end comment
+      </exercise> -->
+
+
+  <!-- </section> -->
+</chapter>
+  
