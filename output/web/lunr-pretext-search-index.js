@@ -136,13 +136,31 @@ var ptx_lunr_docs = [
   "body": "  What is the relationship between the times ( TE and TH ) reported by lines 22, 23?      TE ≪ TH (significantly smaller)      TE ≫ TH (significantly greater)      TE ≈ TH (approximately the same)      The way memory is allocated for an array, and the way a particular array index element is accessed in Python is similar to that in C++ and Java. In other words, accessing any index takes the same amount of time.   "
 },
 {
-  "id": "sec-section-name",
+  "id": "sec-cpp-int-variables",
   "level": "1",
-  "url": "sec-section-name.html",
+  "url": "sec-cpp-int-variables.html",
   "type": "Section",
   "number": "2.1",
-  "title": "Section Title",
-  "body": " Section Title  Text of section.  "
+  "title": "",
+  "body": " "
+},
+{
+  "id": "sec-cpp-class-variables",
+  "level": "1",
+  "url": "sec-cpp-class-variables.html",
+  "type": "Section",
+  "number": "2.2",
+  "title": "",
+  "body": " "
+},
+{
+  "id": "sec-cpp-ptr-variables",
+  "level": "1",
+  "url": "sec-cpp-ptr-variables.html",
+  "type": "Section",
+  "number": "2.3",
+  "title": "",
+  "body": " "
 },
 {
   "id": "backmatter-2",

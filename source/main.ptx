@@ -16,7 +16,9 @@
 
     <!-- Include chapters -->
     <xi:include href="./ch-motivation/ch-motivation.ptx"/> <!-- Add this line -->
-    <xi:include href="./ch-chapter-title.ptx" />
+    <xi:include href="./ch-cpp/ch-cpp.ptx"/> <!-- Add this line -->
+
+    <!-- <xi:include href="./ch-chapter-title.ptx" /> -->
 
 
     <!-- Include backmatter -->

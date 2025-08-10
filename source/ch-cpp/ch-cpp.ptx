@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-cpp" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Memory Allocation in C++</title>
+
+  <introduction>
+    <!-- <p>C++ has two types of variables. Let us refer to them as variables (these are the ordinary variables, 
+        and the default), and reference variables. Note that this applies to pre-defined types such as
+        int, and to user-defined types. In addition, C++ also has special pointer variables, which behave
+        just as ordinary variables. Pointers to pre-defined types and pointers to user-defined types work 
+        similarly. We can also have pointer variables that are reference variables.
+    </p> -->
+
+    <p>
+        C++ provides fine-grained control over memory through several types of variables. To understand 
+        how memory is allocated and accessed, we categorize variables as follows:
+        <ul>
+            <li>
+                <p>
+                    <term>Ordinary (value) variables</term>: These directly hold values and are typically 
+                    allocated on the stack (for both built-in and user-defined types). Examples include:
+                    <cd>
+int x = 5;
+MyClass obj;
+                    </cd>
+                </p>
+            </li>
+            <li>
+                <p>
+                    <term>Reference variables</term>: These are aliases for existing variables and do not 
+                    allocate new memory. They are declared using the &amp; symbol (and can be used for
+                    built-in and user-defined types):
+                    <cd>
+int&amp; ref = x;
+MyClass&amp; obj2 = obj;
+                    </cd>
+                </p>
+            </li>
+            <li>
+                <p>
+                    <term>Pointer variables</term>: These are ordinary (value) variables that hold memory 
+                    addresses. These variables can point to both built-in and user-defined types. They are 
+                    declared using the * symbol (note the use of &amp; used for declaring reference 
+                    variables, also serve as the operator that gets the address of a variable):
+                    <cd>
+int* ptr = &amp;x;
+MyClass* ptr2 = &amp;obj;
+                    </cd>
+                </p>
+            </li>
+        </ul>
+    </p>
+
+    <p>Note that we can have pointer variables that are reference variables. This follows naturally from 
+        the previous variable types, but this is rarely used (as it is not really needed in practice).   
+        Here, the pointer itself is a reference to another pointer.
+        <cd>
+int* ptr2;
+int*&amp; ptr1 = ptr2;  // ptr1 is a reference to the pointer ptr2
+        </cd>
+    </p>
+
+
+  </introduction>
+
+    <section xml:id="sec-cpp-int-variables">
+    </section>
+
+    <section xml:id="sec-cpp-class-variables">
+    </section>
+
+    <section xml:id="sec-cpp-ptr-variables">
+    </section>
+
+    <!-- include sections -->
+  <!-- <xi:include href="sec-section-name.ptx" /> -->
+
+</chapter>
